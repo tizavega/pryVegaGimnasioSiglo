@@ -106,6 +106,7 @@
             cmoTurno.Name = "cmoTurno";
             cmoTurno.Size = new Size(109, 23);
             cmoTurno.TabIndex = 10;
+            cmoTurno.SelectedIndexChanged += cmoTurno_SelectedIndexChanged;
             // 
             // lblNombre
             // 
@@ -115,6 +116,7 @@
             lblNombre.Size = new Size(51, 15);
             lblNombre.TabIndex = 0;
             lblNombre.Text = "Nombre";
+            lblNombre.Click += lblNombre_Click;
             // 
             // txtNombre
             // 
@@ -122,6 +124,8 @@
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(74, 23);
             txtNombre.TabIndex = 1;
+            txtNombre.TextChanged += txtNombre_TextChanged;
+            txtNombre.KeyPress += txtNombre_KeyPress;
             // 
             // lblEdad
             // 
@@ -138,6 +142,8 @@
             txtEdad.Name = "txtEdad";
             txtEdad.Size = new Size(74, 23);
             txtEdad.TabIndex = 5;
+            txtEdad.TextChanged += txtEdad_TextChanged;
+            txtEdad.KeyPress += txtEdad_KeyPress;
             // 
             // chkEstudiante
             // 
@@ -167,6 +173,7 @@
             cboPlan.Name = "cboPlan";
             cboPlan.Size = new Size(109, 23);
             cboPlan.TabIndex = 8;
+            cboPlan.SelectedIndexChanged += cboPlan_SelectedIndexChanged;
             // 
             // lblTurno
             // 
@@ -220,6 +227,8 @@
             txtMeses.Name = "txtMeses";
             txtMeses.Size = new Size(75, 23);
             txtMeses.TabIndex = 12;
+            txtMeses.TextChanged += txtMeses_TextChanged;
+            txtMeses.KeyPress += txtMeses_KeyPress;
             // 
             // chkCasillero
             // 
@@ -235,6 +244,7 @@
             // 
             cboCuotas.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCuotas.FormattingEnabled = true;
+            cboCuotas.Items.AddRange(new object[] { "Un Pago", "3 Meses", "6 Meses" });
             cboCuotas.Location = new Point(92, 130);
             cboCuotas.Name = "cboCuotas";
             cboCuotas.Size = new Size(76, 23);
@@ -298,9 +308,13 @@
             Controls.Add(btnCalcular);
             Controls.Add(tabControl1);
             Controls.Add(btnLimpiar);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "frmGimnasioSiglo";
-            Text = "frmGimnasioSiglo";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Gimnasio Siglo ";
+            Load += frmGimnasioSiglo_Load;
             tabControl1.ResumeLayout(false);
             tpRegistrarse.ResumeLayout(false);
             tpRegistrarse.PerformLayout();
