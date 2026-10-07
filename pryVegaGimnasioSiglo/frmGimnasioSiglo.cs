@@ -22,6 +22,9 @@ namespace pryVegaGimnasioSiglo
         decimal PorcentajeDescuento = 0m;
         decimal PorcentajeAjustePago = 0m;
 
+        int cuotas;
+
+
         public frmGimnasioSiglo()
         {
             InitializeComponent();
@@ -38,7 +41,7 @@ namespace pryVegaGimnasioSiglo
             rbtEfectivo.Checked = true;
             cboCuotas.SelectedIndex = -1;
             cboCuotas.Enabled = false;
-            btnCalcular.Enabled = false;
+            //btnCalcular.Enabled = false;
 
             txtNombre.Focus();
 
@@ -53,6 +56,7 @@ namespace pryVegaGimnasioSiglo
             public string Horario;
             public int Meses;
             public string FormaPago;
+            public decimal PorcentajeDescuento;
             public decimal Total;
             public decimal ValorCuota;
         }
@@ -128,15 +132,33 @@ namespace pryVegaGimnasioSiglo
             if (chkCasillero.Checked) PrecioMensual += PRECIO_CASILLERO;
             Subtotal = PrecioMensual * Meses;
 
+            if (Edad > 65)
+
+            {
+                PrecioMensual = PrecioMensual * 0.7m; // Aplicar 30% de descuento para mayores de 65 años
+            }
+            else if
+                (Edad < 18)
+            { PrecioMensual = PrecioMensual * 0.75m; } // Aplicar 25% de descuento para menores de 18 años
+
+            Subtotal = PrecioMensual * Meses;
+
+
+
+
+
             if (rbtTarjeta.Checked)
             {
-                cboCuotas.Enabled = true;
-                cboCuotas.SelectedIndex = 0;
+
+
+                //cboCuotas.Enabled = true;
+                //cboCuotas.SelectedIndex = 0;
+
             }
             else
             {
-                cboCuotas.Enabled = false;
-                cboCuotas.SelectedIndex = -1;
+                //cboCuotas.Enabled = false;
+                //cboCuotas.SelectedIndex = -1;
             }
             decimal importeConDescuento = Subtotal - (Subtotal * PorcentajeDescuento / 100m);
 
@@ -152,8 +174,17 @@ namespace pryVegaGimnasioSiglo
                 textoPago = "Efectivo";
             }
             else
-            {
-                int cuotas = int.Parse(cboCuotas.Text);
+            {            
+
+                if (cboCuotas.Text == "3 Meses")
+                {
+                    cuotas = 3;
+                }
+
+                if (cboCuotas.Text == "6 Meses")
+                {
+                    cuotas = 6;
+                }
 
                 decimal recargo = 0m;
                 if (cuotas == 3)
@@ -178,6 +209,7 @@ namespace pryVegaGimnasioSiglo
             unSocio.Horario = horarioTurno;
             unSocio.Meses = Meses;
             unSocio.FormaPago = textoPago;
+            unSocio.PorcentajeDescuento = PorcentajeDescuento;
             unSocio.Total = Total;
             unSocio.ValorCuota = ValorCuota;
 
@@ -187,6 +219,7 @@ namespace pryVegaGimnasioSiglo
                  $"  Plan: {unSocio.Plan} - Turno: {unSocio.Horario}  " +
                  $"  Meses: {unSocio.Meses}  " +
                  $"  Forma de pago: {unSocio.FormaPago}  " +
+                    $"  Porcentaje de descuento aplicado: {unSocio.PorcentajeDescuento}%  " +
                  $"  Total a pagar: {unSocio.Total.ToString()}  " +
                  $"  Valor de cuota: {unSocio.ValorCuota.ToString()}  ";
             MessageBox.Show(mensaje, "  Gimnasio Siglo - Resultado  "
@@ -196,7 +229,7 @@ namespace pryVegaGimnasioSiglo
 
         private void frmGimnasioSiglo_Load(object sender, EventArgs e)
         {
-
+            cboCuotas.Enabled = rbtTarjeta.Checked;
         }
 
         private void txtEdad_TextChanged(object sender, EventArgs e)
@@ -257,6 +290,21 @@ namespace pryVegaGimnasioSiglo
         private void lblNombre_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cboCuotas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbtEfectivo_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbtTarjeta_CheckedChanged(object sender, EventArgs e)
+        {
+            cboCuotas.Enabled = rbtTarjeta.Checked;
         }
     }
 }

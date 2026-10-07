@@ -249,6 +249,7 @@
             cboCuotas.Name = "cboCuotas";
             cboCuotas.Size = new Size(76, 23);
             cboCuotas.TabIndex = 19;
+            cboCuotas.SelectedIndexChanged += cboCuotas_SelectedIndexChanged;
             // 
             // lblPago
             // 
@@ -279,6 +280,7 @@
             rbtEfectivo.TabStop = true;
             rbtEfectivo.Text = "Efectivo";
             rbtEfectivo.UseVisualStyleBackColor = true;
+            rbtEfectivo.CheckedChanged += rbtEfectivo_CheckedChanged;
             // 
             // rbtTarjeta
             // 
@@ -289,6 +291,7 @@
             rbtTarjeta.TabIndex = 17;
             rbtTarjeta.Text = "Tarjeta";
             rbtTarjeta.UseVisualStyleBackColor = true;
+            rbtTarjeta.CheckedChanged += rbtTarjeta_CheckedChanged;
             // 
             // btnLimpiar
             // 
