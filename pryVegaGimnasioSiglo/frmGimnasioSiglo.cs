@@ -25,9 +25,14 @@ namespace pryVegaGimnasioSiglo
         int cuotas;
 
 
+        string[] arrayClientes = new string[3];
+        int indiceClientes = 0;
+
+
         public frmGimnasioSiglo()
         {
             InitializeComponent();
+            btnConsultar.Click += btnConsultar_Click;
         }
         private void EstadoInicial()
         {
@@ -42,6 +47,8 @@ namespace pryVegaGimnasioSiglo
             cboCuotas.SelectedIndex = -1;
             cboCuotas.Enabled = false;
             //btnCalcular.Enabled = false;
+
+
 
             txtNombre.Focus();
 
@@ -174,7 +181,7 @@ namespace pryVegaGimnasioSiglo
                 textoPago = "Efectivo";
             }
             else
-            {            
+            {
 
                 if (cboCuotas.Text == "3 Meses")
                 {
@@ -213,17 +220,27 @@ namespace pryVegaGimnasioSiglo
             unSocio.Total = Total;
             unSocio.ValorCuota = ValorCuota;
 
-            string mensaje = $" DETALLE DE INSCRIPCIÓN " +
-                 $"  Nombre: {unSocio.Nombre}  " +
-                 $"  Edad: {unSocio.Edad} ({unSocio.Categoria})  " +
-                 $"  Plan: {unSocio.Plan} - Turno: {unSocio.Horario}  " +
-                 $"  Meses: {unSocio.Meses}  " +
-                 $"  Forma de pago: {unSocio.FormaPago}  " +
-                    $"  Porcentaje de descuento aplicado: {unSocio.PorcentajeDescuento}%  " +
+            string mensaje = $" DETALLE DE INSCRIPCIÓN\n" +
+                 $"  Nombre: {unSocio.Nombre}\n" +
+                 $"  Edad: {unSocio.Edad} ({unSocio.Categoria})\n" +
+                 $"  Plan: {unSocio.Plan} - Turno: {unSocio.Horario}\n" +
+                 $"  Meses: {unSocio.Meses}\n" +
+                 $"  Forma de pago: {unSocio.FormaPago}\n" +
+                    $"  Porcentaje de descuento aplicado: {unSocio.PorcentajeDescuento}%\n" +
                  $"  Total a pagar: {unSocio.Total.ToString()}  " +
                  $"  Valor de cuota: {unSocio.ValorCuota.ToString()}  ";
             MessageBox.Show(mensaje, "  Gimnasio Siglo - Resultado  "
                 , MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            arrayClientes[indiceClientes] = unSocio.Nombre + " - " + unSocio.Plan + " - " + unSocio.Meses + " Meses";
+            indiceClientes++;
+
+            if (indiceClientes == arrayClientes.Length)
+            {
+                btnCalcular.Enabled = false;
+            }
+
+
             EstadoInicial();
         }
 
@@ -305,6 +322,27 @@ namespace pryVegaGimnasioSiglo
         private void rbtTarjeta_CheckedChanged(object sender, EventArgs e)
         {
             cboCuotas.Enabled = rbtTarjeta.Checked;
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            int indiceRecorrido = 0;
+            while (indiceRecorrido < arrayClientes.Length)
+            {
+                lstClientes.Items.Add(arrayClientes[indiceRecorrido]);
+                indiceRecorrido++;
+            }
+
+        }
+
+        private void gpbMedioPago_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lstClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -51,11 +51,15 @@
             txtCuotas = new Label();
             rbtEfectivo = new RadioButton();
             rbtTarjeta = new RadioButton();
+            tbConsultar = new TabPage();
+            btnConsultar = new Button();
+            lstClientes = new ListBox();
             btnLimpiar = new Button();
             tabControl1.SuspendLayout();
             tpRegistrarse.SuspendLayout();
             tbPago.SuspendLayout();
             gpbMedioPago.SuspendLayout();
+            tbConsultar.SuspendLayout();
             SuspendLayout();
             // 
             // btnCalcular
@@ -72,6 +76,7 @@
             // 
             tabControl1.Controls.Add(tpRegistrarse);
             tabControl1.Controls.Add(tbPago);
+            tabControl1.Controls.Add(tbConsultar);
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -211,6 +216,7 @@
             gpbMedioPago.TabIndex = 23;
             gpbMedioPago.TabStop = false;
             gpbMedioPago.Text = "Medios de Pago";
+            gpbMedioPago.Enter += gpbMedioPago_Enter;
             // 
             // lblMeses
             // 
@@ -293,6 +299,36 @@
             rbtTarjeta.UseVisualStyleBackColor = true;
             rbtTarjeta.CheckedChanged += rbtTarjeta_CheckedChanged;
             // 
+            // tbConsultar
+            // 
+            tbConsultar.Controls.Add(btnConsultar);
+            tbConsultar.Controls.Add(lstClientes);
+            tbConsultar.Location = new Point(4, 24);
+            tbConsultar.Name = "tbConsultar";
+            tbConsultar.Padding = new Padding(3);
+            tbConsultar.Size = new Size(269, 232);
+            tbConsultar.TabIndex = 2;
+            tbConsultar.Text = "Consultar";
+            tbConsultar.UseVisualStyleBackColor = true;
+            // 
+            // btnConsultar
+            // 
+            btnConsultar.Location = new Point(6, 6);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(75, 23);
+            btnConsultar.TabIndex = 1;
+            btnConsultar.Text = "Consultar";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
+            // 
+            // lstClientes
+            // 
+            lstClientes.FormattingEnabled = true;
+            lstClientes.Location = new Point(6, 57);
+            lstClientes.Name = "lstClientes";
+            lstClientes.Size = new Size(257, 169);
+            lstClientes.TabIndex = 0;
+            // 
             // btnLimpiar
             // 
             btnLimpiar.Location = new Point(111, 274);
@@ -324,6 +360,7 @@
             tbPago.ResumeLayout(false);
             gpbMedioPago.ResumeLayout(false);
             gpbMedioPago.PerformLayout();
+            tbConsultar.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -352,5 +389,8 @@
         private RadioButton rbtEfectivo;
         private RadioButton rbtTarjeta;
         private Button btnLimpiar;
+        private TabPage tbConsultar;
+        private Button btnConsultar;
+        private ListBox lstClientes;
     }
 }
